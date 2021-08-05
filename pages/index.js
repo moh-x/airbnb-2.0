@@ -5,10 +5,15 @@ import SmallCard from "../components/SmallCard";
 import MediumCard from "../components/MediumCard";
 import LargeCard from "../components/LargeCard";
 import Footer from "../components/Footer";
+import { MoonIcon } from "@heroicons/react/solid";
+import { SunIcon } from "@heroicons/react/outline";
+import { useState } from "react";
 
 export default function Home({ exploreData, cardsData }) {
+  const [darkMode, setDarkMode] = useState(false);
+
   return (
-    <div className="">
+    <html className={`${darkMode && "dark bg-gray-900"}`}>
       <Head>
         <title>Airbnb 2.0</title>
         <link rel="icon" href="/favicon.ico" />
@@ -18,8 +23,8 @@ export default function Home({ exploreData, cardsData }) {
 
       <Banner />
 
-      <main className="max-w-7xl mx-auto px-8 sm:px-16 ">
-        <section className="pt-6">
+      <main className="max-w-7xl mx-auto px-8 sm:px-16 dark:bg-gray-900 dark:text-gray-200">
+        <section className="pt-6 dark:bg-gray-900">
           <h2 className="text-4xl font-semibold pb-5">Explore Nearby</h2>
 
           {/* Pull data from a server -API */}
@@ -35,7 +40,7 @@ export default function Home({ exploreData, cardsData }) {
           </div>
         </section>
 
-        <section>
+        <section className="dark:bg-gray-900">
           <h2 className="text-4xl font-semibold py-8">Live Anywhere</h2>
           <div className="flex space-x-3 overflow-scroll scrollbar-hide p-3 -ml-3">
             {cardsData?.map(({ img, title }) => (
@@ -53,7 +58,18 @@ export default function Home({ exploreData, cardsData }) {
       </main>
 
       <Footer />
-    </div>
+
+      <button
+        onClick={() => setDarkMode(!darkMode)}
+        className="fixed bottom-6 right-6 p-1 z-40 bg:gray-800 dark:bg-gray-400 rounded-full shadow-md dark:shadow-inner hover:shadow-xl active:scale-105 transform transition ease-out outline-none"
+      >
+        {darkMode ? (
+          <SunIcon className="w-8 h-8 z-50 rounded-full" />
+        ) : (
+          <MoonIcon className="w-8 h-8 z-50 rounded-full" />
+        )}
+      </button>
+    </html>
   );
 }
 

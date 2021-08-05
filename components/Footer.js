@@ -1,6 +1,6 @@
 function Footer() {
   return (
-    <footer className="grid grid-cols-1 md:grid-cols-4 gap-y-10 px-32 py-14 bg:gray-100 text-xs text-gray-600">
+    <footer className="grid grid-cols-1 md:grid-cols-4 gap-y-10 px-32 py-14 bg:gray-100 dark:bg-gray-800 text-xs text-gray-600 dark:text-gray-400">
       <div className="space-y-4">
         <h5 className="font-bold ">ABOUT</h5>
         <p>How Airbnb works</p>
