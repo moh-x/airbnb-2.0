@@ -7,13 +7,25 @@ import LargeCard from "../components/LargeCard";
 import Footer from "../components/Footer";
 import { MoonIcon } from "@heroicons/react/solid";
 import { SunIcon } from "@heroicons/react/outline";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home({ exploreData, cardsData }) {
   const [darkMode, setDarkMode] = useState(false);
 
+  useEffect(() => {
+    setDarkMode(JSON.parse(window.localStorage.getItem("darkMode")));
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem("darkMode", darkMode);
+  }, [darkMode]);
+
   return (
-    <html className={`${darkMode && "dark bg-gray-900"}`}>
+    <html
+      className={`${
+        darkMode && "dark bg-gray-900"
+      } transition duration-1000 ease-out`}
+    >
       <Head>
         <title>Airbnb 2.0</title>
         <link rel="icon" href="/favicon.ico" />
